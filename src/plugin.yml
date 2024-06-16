@@ -1,0 +1,9 @@
+name: ParrotGlide
+author: NGT (original was done by arboriginal)
+main: me.workagum.Plugin
+api-version: 1.13
+version: 6.9
+commands:
+  pg-reload:
+    description: Reload the plugin configuration
+    permission: pg.reload
