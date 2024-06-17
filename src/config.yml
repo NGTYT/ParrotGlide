@@ -1,0 +1,56 @@
+
+messages: # You can use formatting codes, see https://minecraft.gamepedia.com/Formatting_codes
+  config_reloaded: "§8[§6§lParrotGlide§8] §aConfiguration reloaded."
+  wrong_item_type: "§cItem you choose for parrot_head.head_item is invalid... Using default."
+  easteregg_alert: "§7Something strange happens at §l{x}§7/§l{y}§7/§l{z}§7..." # See easteregg.alert_players
+  easteregg_log: |- # Log messages in console
+    §8[§6§lparrotGlide§8] §2EasterEgg {event}:
+    §b{coords}
+
+# When a player carry a parrot, he temporary get an item (a parrot head by default, suggested by ToasterBorst)
+parrot_head:
+  player_name: "MHF_parrot"   # The playername used to generate the parrot head (ignored if item is not "PLAYER_HEAD")
+  display_name: "Poor parrot" 
+  head_item: PLAYER_HEAD       
+
+limitations:
+  max_duration: 120   # Seconds before the effect stops
+  baby_parrot: false # If true, you can also use baby parrot
+  stop_on_eject: true # If true, the effect stop when the parrot is ejected
+  lock_hand: true     # If true, the player cannot change item slot while carrying the parrot
+  # in this case, he has to drop it or right click to launch the parrot
+  # If false, when the player change his current slot, the parrot flees
+  # /!\ I recommend lock hand because some players have a very sentitive mouse wheel, but your choice
+
+behaviors:
+  glide_when_carrying: true 
+  ignore_grass: true        
+  leave_by_itself: true     # The parrot leave the player shoulder by itself when the effect stops
+  change_slot_launch: false # (Only applied when limitations.lock_hand=false)
+  # If true,  the parrot is launched when the player change his active slot in his hotbar.
+  # If false, the parrot simply flees without velocity (more logic IMHO)
+  right_click_launch: true  # If true, on right click you launch the parrot, false: it flees without velocity
+  place_when_sneaking: true # If true, whatever you choose for right_click_launch, if the player is sneaking
+  # when he right click, the parrot is gently place on the ground instead of launch / flees
+
+  takes_damages:
+    enabled: false # If true, the parrot will take damages (trying to escape)
+    amount: 0.1   # How many damages the parrot takes
+    frequency: 3  # Frequency (seconds) to repeat
+  # Note: Damages to parrot are considered as given by the player, so the plugin works well with Revenge
+  # https://www.spigotmc.org/resources/revenge-1-7-to-1-14-support.18235/
+
+  eject_velocity: 0.5 # Velocity given to the parrot when the player eject it / 0 to disable
+                      # (not applied when the parrot leaves by itself)
+                      # High values are fun but less realistic... Your choice! (Chuck Norris = 10)
+  # You can use the format « value1;value2 » to use a range. (suggested by LegendDouleB)
+  # Example: « 0.1;1.2 » will launch the parrot at a random velocity between 0.1 and 1.2
+
+# By definition, an EasterEgg is not officially documented... So, I let you find what is it :)
+# Chance is a multiplicator, not a percentage (values are capped from 0.01 to 100 when the config is read).
+# You should disable it on serious (earnest) servers, because it's something totally nutty (and useless).
+easteregg:
+  enabled: true
+  chance: 1
+  log_events: true
+  alert_players: true
